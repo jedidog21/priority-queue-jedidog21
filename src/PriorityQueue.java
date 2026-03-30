@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class represents a Priority Queue (heap) based on the ordering
@@ -19,6 +20,15 @@ public class PriorityQueue<E extends Comparable<E>> {
      */
     public PriorityQueue() {
         myHeap = new ArrayList<E>();
+    }
+
+    public PriorityQueue(E[] arr){
+        myHeap = new ArrayList<>();
+        for (E element : arr){
+            myHeap.add(0,element);
+            size++;
+            shiftDown(0);
+        }
     }
 
     /**
@@ -176,18 +186,20 @@ public class PriorityQueue<E extends Comparable<E>> {
      * @param args
      */
     public static void main(String[] args) {
-        PriorityQueue<Integer> theHeap = new PriorityQueue<Integer>();
-        theHeap.add(5);
-        theHeap.add(10);
-        theHeap.add(61);
-        theHeap.add(15);
-        System.out.println(theHeap);
-        theHeap.add(17);
-        theHeap.add(2);
-        System.out.println(theHeap);
-        theHeap.add(4);
-        System.out.println("After adding: " + theHeap);
-        System.out.println("Should be: 2 10 4 15 17 61 5");
+        Integer[] list = {5, 10, 61, 15, 17, 2, 4};
+        PriorityQueue<Integer> theHeap = new PriorityQueue<Integer>(list);
+        System.out.println("Bottom-Up approach: " + theHeap);
+
+        PriorityQueue<Integer> theHeap2 = new PriorityQueue<Integer>();
+        theHeap2.add(5);
+        theHeap2.add(10);
+        theHeap2.add(61);
+        theHeap2.add(15);
+        theHeap2.add(17);
+        theHeap2.add(2);
+        theHeap2.add(4);
+        System.out.println("How it should be: " + theHeap2);
+        System.out.println("\nShould be: 2 10 4 15 17 61 5");
         System.out.println("Poll (2): " + theHeap.poll());
         System.out.println("Poll (4): " + theHeap.poll());
         System.out.println(theHeap);
